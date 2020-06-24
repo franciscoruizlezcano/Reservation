@@ -47,4 +47,25 @@ public class Reserve implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
+    public Reserve() {
+    }
+
+    public Reserve(Integer id) {
+        this.id = id;
+    }
+
+    public Reserve(String description, Date checkInDate, Date egressDate, Client client) {
+        this.description = description;
+        this.checkInDate = checkInDate;
+        this.egressDate = egressDate;
+        this.client = client;
+    }
+
+    public Reserve(Integer id, String description, Date checkInDate, Date egressDate, Client client) {
+        this.id = id;
+        this.description = description;
+        this.checkInDate = checkInDate;
+        this.egressDate = egressDate;
+        this.client = client;
+    }
 }

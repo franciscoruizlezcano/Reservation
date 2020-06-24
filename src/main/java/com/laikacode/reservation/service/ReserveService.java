@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.Optional;
  */
 
 @Service
+@Transactional(readOnly = true)
 public class ReserveService implements CrudService<Reserve, Integer>, PaginationAndSortingService<Reserve> {
 
     @Autowired
@@ -32,6 +34,7 @@ public class ReserveService implements CrudService<Reserve, Integer>, Pagination
      * @return Reserve
      */
     @Override
+    @Transactional
     public Reserve save(Reserve reserve) {
         return this.repository.save(reserve);
     }
@@ -41,6 +44,7 @@ public class ReserveService implements CrudService<Reserve, Integer>, Pagination
      * @return List<Reserve>
      */
     @Override
+    @Transactional
     public List<Reserve> saveAll(List<Reserve> list) {
         return this.repository.saveAll(list);
     }
@@ -115,6 +119,7 @@ public class ReserveService implements CrudService<Reserve, Integer>, Pagination
      * @param reserve
      */
     @Override
+    @Transactional
     public void delete(Reserve reserve) {
         this.repository.delete(reserve);
     }
@@ -123,6 +128,7 @@ public class ReserveService implements CrudService<Reserve, Integer>, Pagination
      * @param list
      */
     @Override
+    @Transactional
     public void deleteAll(List<Reserve> list) {
         this.repository.deleteAll(list);
     }
@@ -131,6 +137,7 @@ public class ReserveService implements CrudService<Reserve, Integer>, Pagination
      * <h4>Delete all entities</h4>
      */
     @Override
+    @Transactional
     public void deleteAll() {
         this.repository.deleteAll();
     }

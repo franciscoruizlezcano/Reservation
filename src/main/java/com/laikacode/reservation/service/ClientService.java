@@ -1,7 +1,6 @@
 package com.laikacode.reservation.service;
 
 import com.laikacode.reservation.model.Client;
-import com.laikacode.reservation.model.Client;
 import com.laikacode.reservation.repository.ClientRepository;
 import com.laikacode.reservation.service.util.CrudService;
 import com.laikacode.reservation.service.util.PaginationAndSortingService;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +22,7 @@ import java.util.Optional;
  */
 
 @Service
+@Transactional(readOnly = true)
 public class ClientService implements CrudService<Client, Integer>, PaginationAndSortingService<Client> {
 
     @Autowired
@@ -32,6 +33,7 @@ public class ClientService implements CrudService<Client, Integer>, PaginationAn
      * @return Client
      */
     @Override
+    @Transactional
     public Client save(Client Client) {
         return this.repository.save(Client);
     }
@@ -41,6 +43,7 @@ public class ClientService implements CrudService<Client, Integer>, PaginationAn
      * @return List<Client>
      */
     @Override
+    @Transactional
     public List<Client> saveAll(List<Client> list) {
         return this.repository.saveAll(list);
     }
@@ -115,6 +118,7 @@ public class ClientService implements CrudService<Client, Integer>, PaginationAn
      * @param Client
      */
     @Override
+    @Transactional
     public void delete(Client Client) {
         this.repository.delete(Client);
     }
@@ -123,6 +127,7 @@ public class ClientService implements CrudService<Client, Integer>, PaginationAn
      * @param list
      */
     @Override
+    @Transactional
     public void deleteAll(List<Client> list) {
         this.repository.deleteAll(list);
     }
@@ -131,6 +136,7 @@ public class ClientService implements CrudService<Client, Integer>, PaginationAn
      * <h4>Delete all entities</h4>
      */
     @Override
+    @Transactional
     public void deleteAll() {
         this.repository.deleteAll();
     }
